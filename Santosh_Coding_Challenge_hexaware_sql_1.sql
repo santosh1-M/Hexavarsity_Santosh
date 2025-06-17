@@ -149,7 +149,7 @@ select * from ExhibitionArtworks;
  artworks they have in this category.
  */
  
- select s.name as Aristname,count(k.artworkid) as number_of_artworks from Artists s join artwork k 
+ select distinct(s.name) as Aristname,count(k.artworkid) as number_of_artworks from Artists s join artwork k 
  on s.artistid=k.artistid join categories c on k.categoryid=c.categoryid
  where c.name='painting' group by s.name,k.artworkid;
  
@@ -158,7 +158,7 @@ select * from ExhibitionArtworks;
  exhibition, along with their artists and categories.
  */
  
- select ar.Name as ArtistName from Exhibition e
+ select distinct ar.Name as ArtistName from Exhibition e
 join  ExhibitionArtworks ea on e.ExhibitionID = ea.ExhibitionID
 join Artwork a on ea.ArtworkID = a.ArtworkID
 join Artists ar on a.ArtistID = ar.ArtistID
@@ -193,12 +193,12 @@ s.name,k.artistid having count(k.artistid)>3;
 
 -- 9. Find the artworks created by artists from a specific nationality (e.g., Spanish).
 
-select k.title as title  from artwork k join artists v on  k.artistid=v.artistid where v.nationality='spanish';
-select k.title as title  from artwork k join artists v on  k.artistid=v.artistid where v.nationality='dutch';
+select distinct k.title as title  from artwork k join artists v on  k.artistid=v.artistid where v.nationality='spanish';
+select distinct k.title as title  from artwork k join artists v on  k.artistid=v.artistid where v.nationality='dutch';
 
 -- 10.  List exhibitions that feature artwork by both Vincent van Gogh and Leonardo da Vinci.
 
-select e.title as TitleName from Exhibition e
+select distinct e.title as TitleName from Exhibition e
 join  ExhibitionArtworks ea on e.ExhibitionID = ea.ExhibitionID
 join Artwork a on ea.ArtworkID = a.ArtworkID
 join Artists ar on a.ArtistID = ar.ArtistID
@@ -207,7 +207,7 @@ where ar.name in ('Vincent van Gogh','Leonardo da Vinci');
 
 -- 11.Find all the artworks that have not been included in any exhibition
 
-select e.title as TitleName from Exhibition e
+select distinct e.title as TitleName from Exhibition e
 join  ExhibitionArtworks ea on e.ExhibitionID = ea.ExhibitionID
 join Artwork a on ea.ArtworkID = a.ArtworkID
 join Artists ar on a.ArtistID = ar.ArtistID
