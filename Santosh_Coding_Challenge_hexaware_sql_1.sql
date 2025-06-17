@@ -131,7 +131,7 @@ select * from ExhibitionArtworks;
  
  select s.name ,count(s.artistid) as number_of_artworks from Artists s 
  left join Artwork k on s.artistid=k.artistid 
- group by s.artistid,s.name order by s.artistid desc ;
+ group by s.artistid,s.name order by number_of_artworks desc ;
  
  /*
  2. List the titles of artworks created by artists
