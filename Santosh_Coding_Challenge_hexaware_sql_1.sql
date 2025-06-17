@@ -139,7 +139,7 @@ select * from ExhibitionArtworks;
  and order them by the year in ascending order.
  */
  
- select title as Title from artwork s left join artists v 
+ select title as Title,year from artwork s left join artists v 
  on  s.artistid=v.artistid where v.Nationality 
  in ('Spanish','Dutch') order by s.year ;
  
